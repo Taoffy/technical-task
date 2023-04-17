@@ -1,0 +1,28 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.icon {
+    & path:first-child {
+        fill: none;
+    }
+
+    &:hover {
+        & path:first-child {
+            fill: url(#paint0_linear_203_5);
+        }
+    }
+}
+
+.likesCount {
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 22px;
+    color: #ffffff;
+
+    @media (max-width: 575px) {
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,12 @@
+.text {
+    grid-column-start: 2;
+    font-size: 16px;
+    line-height: 19px;
+    color: #ffffff;
+
+    @media (max-width: 575px) {
+        word-break: break-word;
+        font-size: 14px;
+        line-height: 17px;
+    }
+}

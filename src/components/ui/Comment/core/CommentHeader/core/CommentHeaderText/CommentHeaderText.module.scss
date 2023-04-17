@@ -1,0 +1,27 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.name {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 22px;
+    color: #ffffff;
+
+    @media (max-width: 575px) {
+        font-size: 14px;
+    }
+}
+
+.time {
+    font-size: 16px;
+    line-height: 19px;
+    color: #8297ab;
+
+    @media (max-width: 575px) {
+        font-size: 14px;
+        line-height: 17px;
+    }
+}

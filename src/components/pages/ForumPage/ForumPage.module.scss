@@ -1,0 +1,26 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 562px;
+    margin: 52px auto 64px;
+
+    @media (max-width: 575px) {
+        width: auto;
+        margin: 32px 24px 64px;
+    }
+}
+
+.loading {
+    margin: 0;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 22px;
+    color: #ffffff;
+}
+
+.buttonWrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+}

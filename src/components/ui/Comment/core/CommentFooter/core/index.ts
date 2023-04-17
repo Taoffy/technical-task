@@ -1,0 +1,1 @@
+export {CommentFooterText} from "./CommentFooterText";

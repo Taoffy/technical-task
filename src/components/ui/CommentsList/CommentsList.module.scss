@@ -1,0 +1,12 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+
+    &__nested {
+        margin-left: 32px;
+
+        @media (max-width: 575px) {
+            margin-left: 10px;
+        }
+    }
+}

@@ -1,0 +1,1 @@
+export {CommentHeaderAvatar} from "./CommentHeaderAvatar";

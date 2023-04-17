@@ -1,25 +1,24 @@
-import logo from "./logo.svg";
-import "./App.css";
+import {useEffect} from "react";
+
+import {ForumPage} from "./components/pages/ForumPage";
+
+import {getAuthors, getComments} from "./redux/forum/forum.thunks";
+import {useAppDispatch} from "./hooks/redux";
 
 function App() {
-    return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
-        </div>
-    );
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        const authorsPromise = dispatch(getAuthors());
+        const commentsPromise = dispatch(getComments(1));
+
+        return function cleanUp() {
+            authorsPromise.abort();
+            commentsPromise.abort();
+        };
+    }, [dispatch]);
+
+    return <ForumPage />;
 }
 
 export default App;
