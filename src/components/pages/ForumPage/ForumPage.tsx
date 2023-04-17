@@ -1,4 +1,4 @@
-import {useCallback, useState} from "react";
+import {useCallback, useState, useEffect} from "react";
 
 import {ForumPageHeader} from "./core";
 
@@ -7,7 +7,7 @@ import {Button} from "src/components/ui/Button";
 
 import {useAppSelector, useAppDispatch} from "src/hooks/redux";
 import {forumSelectors} from "src/redux/forum/forum.selectors";
-import {getComments} from "src/redux/forum/forum.thunks";
+import {getComments, getAuthors} from "src/redux/forum/forum.thunks";
 
 import styles from "./ForumPage.module.scss";
 
@@ -33,6 +33,16 @@ function ForumPage() {
             });
     }, [dispatch, currentPageForRequest]);
 
+    useEffect(() => {
+        const authorsPromise = dispatch(getAuthors());
+        const commentsPromise = dispatch(getComments(1));
+
+        return function cleanUp() {
+            authorsPromise.abort();
+            commentsPromise.abort();
+        };
+    }, [dispatch]);
+
     return (
         <div className={styles.main}>
             <ForumPageHeader />
@@ -41,7 +51,7 @@ function ForumPage() {
             ) : (
                 <p className={styles.loading}>Loading...</p>
             )}
-            {currentPageForRequest < 4 && (
+            {groupedComments["root"]?.length > 0 && currentPageForRequest < 4 && (
                 <div className={styles.buttonWrapper}>
                     <Button
                         disabled={isButtonDisabled}

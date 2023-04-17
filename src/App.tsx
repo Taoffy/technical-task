@@ -1,24 +1,14 @@
-import {useEffect} from "react";
+import {Provider} from "react-redux";
+import {store} from "./redux/store";
 
 import {ForumPage} from "./components/pages/ForumPage";
 
-import {getAuthors, getComments} from "./redux/forum/forum.thunks";
-import {useAppDispatch} from "./hooks/redux";
-
 function App() {
-    const dispatch = useAppDispatch();
-
-    useEffect(() => {
-        const authorsPromise = dispatch(getAuthors());
-        const commentsPromise = dispatch(getComments(1));
-
-        return function cleanUp() {
-            authorsPromise.abort();
-            commentsPromise.abort();
-        };
-    }, [dispatch]);
-
-    return <ForumPage />;
+    return (
+        <Provider store={store}>
+            <ForumPage />
+        </Provider>
+    );
 }
 
 export default App;
